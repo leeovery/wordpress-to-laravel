@@ -27,14 +27,14 @@ LeeOvery\WordpressToLaravel\WordpressToLaravelServiceProvider::class,
 
 Publish the config file:
 
-``` php
-php artisan vendor:publish --provider="LeeOvery\WordpressToLaravel\WordpressToLaravelServiceProvider" --tag="config"
+``` bash
+$ php artisan vendor:publish --provider="LeeOvery\WordpressToLaravel\WordpressToLaravelServiceProvider" --tag="config"
 ```
 
 Migrate your database to setup the posts, categories, tags & author tables:
 
-``` php
-php artisan migrate
+``` bash
+$ php artisan migrate
 ```
 
 Setup the url to your WP blog in your env file:
@@ -53,8 +53,8 @@ Firstly, it's best to perform a full sync to get all your posts etc across in on
 
 To force sync all published posts:
 
-``` php
-php artisan wordpress-to-laravel:import -F -T
+``` bash
+$ php artisan wordpress-to-laravel:import -F -T
 ```
 
 The `-F` flag forces all posts to be synced. The `-T` flag will truncate all the relevant DB tables prior to syncing.
