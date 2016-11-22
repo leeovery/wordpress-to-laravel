@@ -1,10 +1,12 @@
 {
-  "name": "LeeOvery/WordpressToLaravel",
+  "name": "leeovery/wordpress-to-laravel",
   "type": "library",
   "description": "",
   "keywords": [
     "LeeOvery",
-    "WordpressToLaravel"
+    "WordpressToLaravel",
+    "leeovery",
+    "wordpress-to-laravel"
   ],
   "homepage": "https://github.com/leeovery/wordpress-to-laravel",
   "license": "MIT",
