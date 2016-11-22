@@ -17,10 +17,11 @@
     }
   ],
   "require": {
-    "illuminate/support": "5.3.*",
-    "illuminate/database": "5.3.*",
     "php": "~7.0",
     "cartalyst/tags": "3.0.*",
+    "guzzlehttp/guzzle": "^6.2",
+    "illuminate/database": "5.3.*",
+    "illuminate/support": "5.3.*",
     "league/fractal": "^0.14.0"
   },
   "require-dev": {
