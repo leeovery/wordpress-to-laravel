@@ -16,7 +16,7 @@ On to installation...
 Via Composer:
 
 ``` bash
-$ composer require LeeOvery/WordpressToLaravel
+$ composer require leeovery/wordpress-to-laravel
 ```
 
 After adding the package, add the ServiceProvider to the providers array in config/app.php:
@@ -171,17 +171,17 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/LeeOvery/WordpressToLaravel.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/leeovery/wordpress-to-laravel.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/LeeOvery/WordpressToLaravel/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/LeeOvery/WordpressToLaravel.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/LeeOvery/WordpressToLaravel.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/LeeOvery/WordpressToLaravel.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/leeovery/wordpress-to-laravel/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/leeovery/wordpress-to-laravel.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/leeovery/wordpress-to-laravel.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/leeovery/wordpress-to-laravel.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/LeeOvery/WordpressToLaravel
-[link-travis]: https://travis-ci.org/LeeOvery/WordpressToLaravel
-[link-scrutinizer]: https://scrutinizer-ci.com/g/LeeOvery/WordpressToLaravel/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/LeeOvery/WordpressToLaravel
-[link-downloads]: https://packagist.org/packages/LeeOvery/WordpressToLaravel
+[link-packagist]: https://packagist.org/packages/leeovery/wordpress-to-laravel
+[link-travis]: https://travis-ci.org/leeovery/wordpress-to-laravel
+[link-scrutinizer]: https://scrutinizer-ci.com/g/leeovery/wordpress-to-laravel/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/leeovery/wordpress-to-laravel
+[link-downloads]: https://packagist.org/packages/leeovery/wordpress-to-laravel
 [link-author]: https://github.com/leeovery
 [link-contributors]: ../../contributors
