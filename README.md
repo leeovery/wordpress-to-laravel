@@ -5,7 +5,7 @@
 
 You want a blog, right? And you want to use the Wordpress backend? But you dislike Wordpress themes, and REALLY dislike creating them? Then this is for you my friend...
 
-This package provides the tool-set to sync WP posts from the WP DB and into your Laravel DB (or where ever you want it to go). This way you can still use the WP backend to author your posts and manage the backend users etc, but gives you glorious freedom to custom code your own frontend, without the nonsense that is WP themes.
+This package provides the tool-set to sync WP posts from the WP DB and into your Laravel DB (or wherever you want it to go). This way you can still use the WP backend to author your posts and manage the backend users etc, but gives you glorious freedom to custom code your own frontend, without the nonsense that is WP themes.
 
 It exposes itself as an Artisan command, which means you can set it up to run on a schedule (using Laravel's scheduler) to sync your WP posts, categories, tags and authors to your Laravel DB.
 
@@ -113,6 +113,7 @@ Lets say your WP blog is at https://blog.example.com, and your new Laravel front
 
 1. Create new theme in your WP themes dir called 'redirection_theme'
 2. Create a file called style.css, and insert the following:
+
     ``` css
     /*
     Theme Name: turn off frontend
@@ -125,7 +126,9 @@ Lets say your WP blog is at https://blog.example.com, and your new Laravel front
     Tags:
     */
     ```
+    
 3. Create a file called index.php, and insert the following:
+
     ``` php
     <?php
     global $wp;
@@ -133,7 +136,9 @@ Lets say your WP blog is at https://blog.example.com, and your new Laravel front
     wp_redirect($url, 301);
     die();
     ```
+    
 4. Finally, create a file called functions.php, and insert the following:
+
     ``` php
     <?php
     function redirection_theme_change_view_link($permalink)
@@ -144,6 +149,7 @@ Lets say your WP blog is at https://blog.example.com, and your new Laravel front
     }
     add_filter('post_link', 'redirection_theme_change_view_link');
     ```
+
 5. Don't forget to activate it in your WP backend.
 
 Enjoy!
