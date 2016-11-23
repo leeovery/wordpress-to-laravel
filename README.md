@@ -154,15 +154,7 @@ Lets say your WP blog is at https://blog.example.com, and your new Laravel front
 
 Enjoy!
 
-## Change log
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Testing
-
-``` bash
-$ composer test
-```
 
 ## Contributing
 
