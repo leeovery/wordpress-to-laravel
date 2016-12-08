@@ -60,7 +60,7 @@ class WordpressToLaravel
     /**
      * @var TransformerAbstract
      */
-    protected $AuthorTransformer;
+    protected $authorTransformer;
 
     /**
      * @var TransformerAbstract
@@ -97,7 +97,7 @@ class WordpressToLaravel
             ?? PostTransformer::class;
         $this->categoryTransformer = array_get($this->config, 'transformers.category')
             ?? CategoryTransformer::class;
-        $this->AuthorTransformer = array_get($this->config, 'transformers.author')
+        $this->authorTransformer = array_get($this->config, 'transformers.author')
             ?? AuthorTransformer::class;
         $this->tagTransformer = array_get($this->config, 'transformers.tag')
             ?? TagTransformer::class;
@@ -203,7 +203,7 @@ class WordpressToLaravel
     private function createPostResource(stdClass $post): Item
     {
         return new Item($post, new $this->postTransformer(
-            $this->AuthorTransformer,
+            $this->authorTransformer,
             $this->categoryTransformer,
             $this->tagTransformer
         ));
