@@ -43,7 +43,7 @@ Setup the url to your WP blog in your env file:
 WP_TO_LARAVEL_API_URL=https://blog.your-blog-domain.com/
 ```
 
-Finally, (and arguably the most important step), install the WP API plugin to the WP site you wish to sync from:
+Finally, we need to configure WP itself. If you're using Wordpress 4.7+, then you're all set - crack on! Otherwise, you'll need to install the WP API plugin to the WP site you wish to sync from:
 
 [Wordpress API](http://v2.wp-api.org/)
 
