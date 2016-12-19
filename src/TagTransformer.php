@@ -14,7 +14,7 @@ class TagTransformer extends TransformerAbstract
 {
     public function transform($post)
     {
-        $embedded = collect($post->_embedded);
+        $embedded = collect($post->_embedded ?? []);
 
         if ($embedded->has('wp:term')) {
 
