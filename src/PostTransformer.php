@@ -59,16 +59,16 @@ class PostTransformer extends TransformerAbstract
             'content'        => $post->content->rendered,
             'format'         => $post->format,
             'status'         => 'publish',
-            'featured_image' => $this->getFeaturedImage($post->_embedded),
+            'featured_image' => $this->getFeaturedImage($post),
             'published_at'   => $this->carbonDate($post->date),
             'created_at'     => $this->carbonDate($post->date),
             'updated_at'     => $this->carbonDate($post->modified),
         ];
     }
 
-    private function getFeaturedImage($embedded)
+    private function getFeaturedImage($post)
     {
-        $embedded = collect($embedded);
+        $embedded = collect($post->_embedded ?? []);
 
         if ($embedded->has('wp:featuredmedia')) {
             $media = head($embedded['wp:featuredmedia']);
