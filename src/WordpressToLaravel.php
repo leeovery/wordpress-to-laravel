@@ -107,11 +107,12 @@ class WordpressToLaravel
      * @param int  $page
      * @param int  $perPage
      * @param bool $truncate
+     * @param bool $forceAll
      */
-    public function import($page = 1, $perPage = 5, $truncate = false)
+    public function import($page = 1, $perPage = 5, $truncate = false, $forceAll = false)
     {
         $this->truncate($truncate)
-             ->fetchPosts($page, $perPage)
+             ->fetchPosts($page, $perPage, $forceAll)
              ->map(function ($post) {
                  return $this->transformPost($post);
              })
@@ -123,17 +124,28 @@ class WordpressToLaravel
     /**
      * Setup the getPosts request
      *
-     * @param int $page
-     * @param     $perPage
+     * @param int  $page
+     * @param int  $perPage
+     * @param bool $forceAll
      * @return Collection
      */
-    protected function fetchPosts($page, $perPage)
+    protected function fetchPosts($page, $perPage, $forceAll)
     {
-        return collect(
-            $this->sendRequest(
-                $this->makeUrl($page, $perPage)
-            )
-        );
+        $posts = collect();
+
+        while (true) {
+            $stop = collect(
+                $this->sendRequest($this->makeUrl($page++, $perPage))
+            )->map(function ($post) use ($posts) {
+                $posts->push($post);
+            })->isEmpty();
+
+            if (! $forceAll || $stop) {
+                break;
+            }
+        }
+
+        return $posts;
     }
 
     /**
@@ -154,14 +166,14 @@ class WordpressToLaravel
     }
 
     /**
-     * @param $page
-     * @param $perPage
+     * @param int $page
+     * @param int $perPage
      * @return string
      */
     protected function makeUrl($page, $perPage)
     {
         $queryString = sprintf(
-            'posts?_embed&filter[orderby]=modified&page=%d&per_page=%d',
+            'posts?_embed=true&filter[orderby]=modified&page=%d&per_page=%d',
             $page, $perPage
         );
 
@@ -225,13 +237,16 @@ class WordpressToLaravel
 
         if ($data['updated_at']->gt($post->updated_at)) {
             $post->update($data);
+            event(new PostUpdated($post));
         }
 
-        if (! is_null($post)) {
-            $post->setTags($tagsData);
-            $post->setCategory($categoryData);
-            $post->setAuthor($authorData);
-            $post->save();
+        $post->setTags($tagsData);
+        $post->setCategory($categoryData);
+        $post->setAuthor($authorData);
+        $post->save();
+
+        if ($post->wasRecentlyCreated) {
+            event(new PostImported($post));
         }
     }
 }
