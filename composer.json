@@ -22,11 +22,11 @@
     "php": "~7.0",
     "cartalyst/tags": "3.0.*",
     "guzzlehttp/guzzle": "^6.2",
-    "illuminate/database": "5.3.*",
-    "illuminate/support": "5.3.*",
-    "illuminate/console": "5.3.*",
-    "illuminate/contracts": "5.3.*",
-    "illuminate/events": "5.3.*",
+    "illuminate/database": "5.3.*|5.4.*",
+    "illuminate/support": "5.3.*|5.4.*",
+    "illuminate/console": "5.3.*|5.4.*",
+    "illuminate/contracts": "5.3.*|5.4.*",
+    "illuminate/events": "5.3.*|5.4.*",
     "league/fractal": "^0.14.0"
   },
   "require-dev": {
