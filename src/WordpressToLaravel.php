@@ -4,6 +4,7 @@ namespace LeeOvery\WordpressToLaravel;
 
 use DB;
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Support\Collection;
 use League\Fractal\Manager as FractalManager;
 use League\Fractal\Resource\Item;
@@ -152,11 +153,31 @@ class WordpressToLaravel
      * Send the request
      *
      * @param string $url
+     * @param int    $tries
      * @return array
      */
-    protected function sendRequest($url)
+    protected function sendRequest($url, $tries = 3)
     {
-        if ($results = $this->client->get($url)) {
+        $tries--;
+
+        beginning:
+        try {
+            $results = $this->client->get($url);
+        } catch (ConnectException $e) {
+            if (! $tries) {
+                return [];
+            }
+
+            $tries--;
+
+            usleep(100);
+
+            goto beginning;
+        } catch (\Exception $e) {
+            return [];
+        }
+
+        if ($results) {
             return json_decode(
                 $results->getBody()
             );
