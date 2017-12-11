@@ -20,7 +20,7 @@
   ],
   "require": {
     "php": "~7.0",
-    "cartalyst/tags": "4.0.*",
+    "cartalyst/tags": "5.0.*",
     "guzzlehttp/guzzle": "^6.2",
     "illuminate/database": "5.3.*|5.4.*|5.5.*",
     "illuminate/support": "5.3.*|5.4.*|5.5.*",
