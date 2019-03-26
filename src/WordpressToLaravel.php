@@ -110,10 +110,10 @@ class WordpressToLaravel
      * @param bool $truncate
      * @param bool $forceAll
      */
-    public function import($page = 1, $perPage = 5, $truncate = false, $forceAll = false)
+    public function import($postRestBase, $page = 1, $perPage = 5, $truncate = false, $forceAll = false)
     {
         $this->truncate($truncate)
-             ->fetchPosts($page, $perPage, $forceAll)
+             ->fetchPosts($postRestBase, $page, $perPage, $forceAll)
              ->map(function ($post) {
                  return $this->transformPost($post);
              })
@@ -130,13 +130,13 @@ class WordpressToLaravel
      * @param bool $forceAll
      * @return Collection
      */
-    protected function fetchPosts($page, $perPage, $forceAll)
+    protected function fetchPosts($postRestBase, $page, $perPage, $forceAll)
     {
         $posts = collect();
 
         while (true) {
             $stop = collect(
-                $this->sendRequest($this->makeUrl($page++, $perPage))
+                $this->sendRequest($this->makeUrl($postRestBase, $page++, $perPage))
             )->map(function ($post) use ($posts) {
                 $posts->push($post);
             })->isEmpty();
@@ -191,10 +191,10 @@ class WordpressToLaravel
      * @param int $perPage
      * @return string
      */
-    protected function makeUrl($page, $perPage)
+    protected function makeUrl($postRestBase, $page, $perPage)
     {
         $queryString = sprintf(
-            'posts?_embed=true&filter[orderby]=modified&page=%d&per_page=%d',
+            "{$postRestBase}?_embed=true&filter[orderby]=modified&page=%d&per_page=%d",
             $page, $perPage
         );
 

@@ -16,6 +16,7 @@ class Importer extends Command
      * @var string
      */
     protected $signature = 'wordpress-to-laravel:import
+                                {postRestBase? : The REST API endpoint (defaults to "posts").}
                                 {page? : The page number from WP to import.}
                                 {per-page? : The number of posts per page to fetch.}
                                 {--F|force-all : This option will grab every published post from the WP DB and sync them all (along with the other embedded bits) to your local DB}
@@ -65,6 +66,7 @@ class Importer extends Command
      */
     public function handle()
     {
+        $postRestBase = $this->argument('postRestBase') ?: 'posts';
         $page = $this->argument('page') ?: 1;
         $perPage = $this->argument('per-page') ?: 5;
         $truncate = $this->option('truncate') ?: false;
@@ -75,7 +77,7 @@ class Importer extends Command
         $this->registerListeners();
 
         $this->wordpressToLaravel->import(
-            $page, $perPage, $truncate, $forceAll
+            $postRestBase, $page, $perPage, $truncate, $forceAll
         );
 
         $this->outputCounts();
