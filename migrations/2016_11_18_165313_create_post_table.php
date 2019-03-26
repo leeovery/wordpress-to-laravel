@@ -16,8 +16,10 @@ class CreatePostTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('wp_id')->unique();
+            $table->string('type');
             $table->string('title');
             $table->string('slug');
+            $table->string('link');
             $table->string('featured_image')->nullable();
             $table->boolean('sticky')->default(false);
             $table->longText('excerpt')->nullable();

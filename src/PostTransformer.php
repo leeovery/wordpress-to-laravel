@@ -52,13 +52,15 @@ class PostTransformer extends TransformerAbstract
     {
         return [
             'wp_id'          => (int)$post->id,
+            'type'           => $post->type,
             'title'          => $post->title->rendered,
             'slug'           => $post->slug,
+            'link'           => $post->link,
             'sticky'         => $post->sticky ?? 0,
             'excerpt'        => $post->excerpt->rendered ?? '',
             'content'        => $post->content->rendered ?? '',
             'format'         => $post->format ?? null,
-            'status'         => 'publish',
+            'status'         => $post->status,
             'featured_image' => $this->getFeaturedImage($post),
             'published_at'   => $this->carbonDate($post->date),
             'created_at'     => $this->carbonDate($post->date),
