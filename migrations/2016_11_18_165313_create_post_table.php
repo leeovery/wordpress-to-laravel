@@ -22,7 +22,7 @@ class CreatePostTable extends Migration
             $table->boolean('sticky')->default(false);
             $table->longText('excerpt')->nullable();
             $table->longText('content');
-            $table->string('format');
+            $table->string('format')->nullable();
             $table->string('status');
             $table->timestamp('published_at')->nullable();
             $table->integer('author_id')->nullable();
