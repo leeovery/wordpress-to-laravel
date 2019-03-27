@@ -194,8 +194,8 @@ class WordpressToLaravel
     protected function makeUrl($postRestBase, $page, $perPage)
     {
         $queryString = sprintf(
-            "{$postRestBase}?_embed=true&filter[orderby]=modified&page=%d&per_page=%d",
-            $page, $perPage
+            '%d?_embed=true&filter[orderby]=modified&page=%d&per_page=%d',
+            $postRestBase, $page, $perPage
         );
 
         return sprintf(
