@@ -5,7 +5,9 @@ namespace LeeOvery\WordpressToLaravel;
 use DB;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ConnectException;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use League\Fractal\Manager as FractalManager;
 use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
@@ -94,21 +96,18 @@ class WordpressToLaravel
 
     protected function setupTransformers()
     {
-        $this->postTransformer = array_get($this->config, 'transformers.post')
-            ?? PostTransformer::class;
-        $this->categoryTransformer = array_get($this->config, 'transformers.category')
-            ?? CategoryTransformer::class;
-        $this->authorTransformer = array_get($this->config, 'transformers.author')
-            ?? AuthorTransformer::class;
-        $this->tagTransformer = array_get($this->config, 'transformers.tag')
-            ?? TagTransformer::class;
+        $this->postTransformer = Arr::get($this->config, 'transformers.post') ?? PostTransformer::class;
+        $this->categoryTransformer = Arr::get($this->config, 'transformers.category') ?? CategoryTransformer::class;
+        $this->authorTransformer = Arr::get($this->config, 'transformers.author') ?? AuthorTransformer::class;
+        $this->tagTransformer = Arr::get($this->config, 'transformers.tag') ?? TagTransformer::class;
     }
 
     /**
-     * @param int  $page
-     * @param int  $perPage
-     * @param bool $truncate
-     * @param bool $forceAll
+     * @param string $postRestBase
+     * @param int    $page
+     * @param int    $perPage
+     * @param bool   $truncate
+     * @param bool   $forceAll
      */
     public function import($postRestBase, $page = 1, $perPage = 5, $truncate = false, $forceAll = false)
     {
@@ -125,9 +124,10 @@ class WordpressToLaravel
     /**
      * Setup the getPosts request
      *
-     * @param int  $page
-     * @param int  $perPage
-     * @param bool $forceAll
+     * @param string $postRestBase
+     * @param int    $page
+     * @param int    $perPage
+     * @param bool   $forceAll
      * @return Collection
      */
     protected function fetchPosts($postRestBase, $page, $perPage, $forceAll)
@@ -187,20 +187,21 @@ class WordpressToLaravel
     }
 
     /**
-     * @param int $page
-     * @param int $perPage
+     * @param string $postRestBase
+     * @param int    $page
+     * @param int    $perPage
      * @return string
      */
     protected function makeUrl($postRestBase, $page, $perPage)
     {
         $queryString = sprintf(
-            "{$postRestBase}?_embed=true&filter[orderby]=modified&page=%d&per_page=%d",
-            $page, $perPage
+            "%s?_embed=true&filter[orderby]=modified&page=%d&per_page=%d",
+            $postRestBase, $page, $perPage
         );
 
         return sprintf(
             '%s%s%s',
-            str_finish($this->config['api_url'], '/'),
+            Str::finish($this->config['api_url'], '/'),
             $this->endpoint,
             $queryString
         );

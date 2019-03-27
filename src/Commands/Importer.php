@@ -4,6 +4,7 @@ namespace LeeOvery\WordpressToLaravel\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Support\Str;
 use LeeOvery\WordpressToLaravel\PostImported;
 use LeeOvery\WordpressToLaravel\PostUpdated;
 use LeeOvery\WordpressToLaravel\WordpressToLaravel;
@@ -53,6 +54,7 @@ class Importer extends Command
      * Create a new command instance.
      *
      * @param WordpressToLaravel $wordpressToLaravel
+     * @param Dispatcher         $dispatcher
      */
     public function __construct(WordpressToLaravel $wordpressToLaravel, Dispatcher $dispatcher)
     {
@@ -105,7 +107,7 @@ class Importer extends Command
 
     private function outputCounts()
     {
-        $this->info($this->importedPostCount . ' ' . str_plural('Post', $this->importedPostCount) . ' Imported.');
-        $this->info($this->updatedPostCount . ' ' . str_plural('Post', $this->updatedPostCount) . ' Updated.');
+        $this->info($this->importedPostCount . ' ' . Str::plural('Post', $this->importedPostCount) . ' Imported.');
+        $this->info($this->updatedPostCount . ' ' . Str::plural('Post', $this->updatedPostCount) . ' Updated.');
     }
 }

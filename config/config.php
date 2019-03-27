@@ -47,5 +47,4 @@ return [
         'tag'      => \LeeOvery\WordpressToLaravel\TagTransformer::class,
     ],
 
-
 ];
