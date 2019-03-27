@@ -8,6 +8,7 @@
 
 namespace LeeOvery\WordpressToLaravel;
 
+use Illuminate\Support\Str;
 use League\Fractal\TransformerAbstract;
 
 class TagTransformer extends TransformerAbstract
@@ -23,7 +24,7 @@ class TagTransformer extends TransformerAbstract
                             ->where('taxonomy', 'post_tag')
                             ->pluck('name')
                             ->map(function ($tag) {
-                                return title_case($tag);
+                                return Str::title($tag);
                             })
                             ->toArray();
         }
