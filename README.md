@@ -19,7 +19,7 @@ Via Composer:
 $ composer require leeovery/wordpress-to-laravel
 ```
 
-This package is auto-discoverable with Laravel, but if you want to be anal go ahead and add the ServiceProvider to the providers array in config/app.php:
+After adding the package, add the ServiceProvider to the providers array in config/app.php:
 
 ``` php
 LeeOvery\WordpressToLaravel\WordpressToLaravelServiceProvider::class,
