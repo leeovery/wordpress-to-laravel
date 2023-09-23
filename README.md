@@ -37,10 +37,20 @@ Migrate your database to setup the posts, categories, tags & author tables:
 $ php artisan migrate
 ```
 
-Setup the url to your WP blog in your env file:
+If you are using wordpress.com to host your blog, set the following env variable to true (default is false). This is done because wordpress.com and wordpress.org (self hosted instances) have different url structure when fetching the posts
+``` env
+WP_TO_LARAVEL_IS_WORDPRESS_COM=true
+```
+
+Next, add your WP blog url to the env file
 
 ``` env
 WP_TO_LARAVEL_API_URL=https://blog.your-blog-domain.com/
+```
+
+or for wordpress.com hosted blogs (change the your-blog part of the url)
+``` env
+WP_TO_LARAVEL_API_URL=https://public-api.wordpress.com/wp/v2/sites/your-blog.wordpress.com/
 ```
 
 Finally, we need to configure WP itself. If you're using Wordpress 4.7+, then you're all set - crack on! Otherwise, you'll need to install the WP API plugin to the WP site you wish to sync from:

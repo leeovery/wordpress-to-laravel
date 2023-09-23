@@ -10,10 +10,23 @@ return [
     | This is the url of your blog where you've installed the Wordpress API
     | plugin.
     |
-    | e.g. http://blog.example.dev/
+    | e.g. http://blog.example.dev/ or https://coolname.wordpress.com/
 	*/
     'api_url'        => env('WP_TO_LARAVEL_API_URL'),
 
+    /*
+	|--------------------------------------------------------------------------
+	| IS WORDPRESS COM
+	|--------------------------------------------------------------------------
+    |
+    | Is your site hosted on wordpress.com
+    | There are two types of wordpress, wordpress.com which hosts the blog, or
+    | wordpress.org which is self hosted
+    | This matters because they have differnt urls for the API
+    |
+    | e.g. true (defaults false)
+    */
+    'is_wordpress_com'  => env('WP_TO_LARAVEL_IS_WORDPRESS_COM', false),
 
     /*
 	|--------------------------------------------------------------------------

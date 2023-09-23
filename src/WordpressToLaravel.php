@@ -18,7 +18,7 @@ class WordpressToLaravel
     /**
      * @var string
      */
-    protected $endpoint = 'wp-json/wp/v2/';
+    protected $hostedEndpoint = 'wp-json/wp/v2/';
 
     /**
      * @var FractalManager
@@ -92,6 +92,11 @@ class WordpressToLaravel
         $this->postModel = $this->config['post_model'] ?? Post::class;
         $this->categoryModel = $this->config['category_model'] ?? Category::class;
         $this->authorModel = $this->config['author_model'] ?? Author::class;
+    }
+
+    protected function isWordpressCom()
+    {
+        return $this->config['is_wordpress_com'];
     }
 
     protected function setupTransformers()
@@ -202,7 +207,7 @@ class WordpressToLaravel
         return sprintf(
             '%s%s%s',
             Str::finish($this->config['api_url'], '/'),
-            $this->endpoint,
+            $this->isWordpressCom() ? '' : $this->hostedEndpoint,
             $queryString
         );
     }
